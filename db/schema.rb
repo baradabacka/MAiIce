@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161207095410) do
     t.string   "url"
     t.string   "email"
     t.text     "commit"
+    t.string   "aasm_state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

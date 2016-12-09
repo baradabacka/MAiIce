@@ -7,6 +7,9 @@
       <th>Url</th>
       <th>Email</th>
       <th>Commit</th>
+      <th>Time of creation</th>
+      <th>Time updates</th>
+      <th>state</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +23,9 @@
         <td><%= message.url %></td>
         <td><%= message.email %></td>
         <td><%= message.commit %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.updated_at %></td>
+        <td><%= message.aasm_state %></td>
         <td><%= link_to 'Show', message %></td>
         <td><%= link_to 'Edit', edit_message_path(message) %></td>
         <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
+
+<%= link_to 'Change state', status_message_path(@message.id , @message.aasm_state),  method: :patch %>
 <%= link_to 'Show', @message %> |
 <%= link_to 'Back', messages_path %>

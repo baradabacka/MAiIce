@@ -1,10 +1,23 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
 
   # GET /messages
   # GET /messages.json
   def index
     @messages = Message.all
+  end
+
+  def status
+    if @message.working?
+      @message.complet
+      render 'edit'
+    end
+
+    if @message.new?
+      @message.work
+      render 'edit'
+    end
+
   end
 
   # GET /messages/1
@@ -25,9 +38,9 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
     respond_to do |format|
       if @message.save
+
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
@@ -69,6 +82,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:employee, :url, :email, :commit)
+      params.require(:message).permit(:employee, :url, :email, :commit, :time_now, :aasm_state)
     end
 end
