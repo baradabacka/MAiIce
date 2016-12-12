@@ -1,7 +1,7 @@
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <h2><%= pluralize(@message.errors.count, "error") %> <%= I18n.t('prohibited_this_message_from_being_saved')%></h2>
 
       <ul>
       <% @message.errors.full_messages.each do |msg| %>
@@ -12,19 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :employee %><br>
+    <%= f.label I18n.t('employee') %><br>
     <%= f.text_field :employee %>
   </div>
   <div class="field">
-    <%= f.label :url %><br>
+    <%= f.label I18n.t('url') %><br>
     <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
+    <%= f.label I18n.t('email') %><br>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :commit %><br>
+    <%= f.label I18n.t('commit') %><br>
     <%= f.text_area :commit %>
   </div>
   <div>
@@ -32,7 +32,7 @@
     <%= f.text_field :aasm_state %>
   </div>
   <div>
-    <%= 'Time now'%> <%= Time.now %>
+    <%= I18n.t('time_now')%> <%= Time.now %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,15 +1,15 @@
-<h1>Listing messages</h1>
+<h1><%= I18n.t('listing_messages')%></h1>
 
 <table>
   <thead>
     <tr>
-      <th> employee</th>
-      <th>Url</th>
-      <th>Email</th>
-      <th>Commit</th>
-      <th>Time of creation</th>
-      <th>Time updates</th>
-      <th>state</th>
+      <th> <%= I18n.t('employee') %></th>
+      <th><%= I18n.t('url')%></th>
+      <th><%= I18n.t('email')%></th>
+      <th><%= I18n.t('commit')%></th>
+      <th><%= I18n.t('time_of_creation')%></th>
+      <th><%= I18n.t('time_updates')%></th>
+      <th><%= I18n.t('state')%></th>
       <th></th>
       <th></th>
       <th></th>
@@ -26,9 +26,9 @@
         <td><%= message.created_at %></td>
         <td><%= message.updated_at %></td>
         <td><%= message.aasm_state %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to I18n.t('show'), message %></td>
+        <td><%= link_to I18n.t('edit'), edit_message_path(message) %></td>
+        <td><%= link_to I18n.t('destroy'), message, method: :delete, data: { confirm: I18n.t('are_you_sure?') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Message', new_message_path %>
+<%= link_to I18n.t('new_message'), new_message_path %>

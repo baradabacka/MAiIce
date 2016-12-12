@@ -9,15 +9,11 @@ class MessagesController < ApplicationController
 
   def status
     if @message.working?
-      @message.complet
-      render 'edit'
-    end
-
-    if @message.new?
+      @message.complete
+    elsif @message.new?
       @message.work
-      render 'edit'
     end
-
+    render 'edit'
   end
 
   # GET /messages/1
@@ -40,8 +36,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
       if @message.save
-
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to @message, notice: I18n.t('message_created') }
         format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
@@ -55,7 +50,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to @message, notice: I18n.t('message_updated') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

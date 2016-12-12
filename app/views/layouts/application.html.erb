@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    <span><%= I18n.t('hello') %> <%= current_user.email %></span>
+    <%= link_to I18n.t('exit'), destroy_user_session_path, :method => :delete %>
 <% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+    <%= link_to I18n.t('login'), new_user_session_path %> или <%= link_to I18n.t('sign_up'), new_user_registration_path %>
 <% end %>
 <ul>
 <li><a href="http://localhost:3000/messages">сообщения</a></li>

@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
       transitions :from => :new, :to => :working
     end
 
-    event :complet do
+    event :complete do
       transitions :from => :working, :to => :completed
     end
 
@@ -17,9 +17,4 @@ class Message < ActiveRecord::Base
       transitions :from => [:new, :working], :to => :not_relevanted
     end
   end
-
-
-
-
-
 end
