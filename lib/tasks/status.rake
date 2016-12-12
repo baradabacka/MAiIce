@@ -3,7 +3,7 @@ namespace :status do
     @messages = Message.all
     @messages.each do |message|
       @data=Time.now
-      if (@data.month - message.created_at.month) == 0
+      if (@data.month - message.created_at.month) == 3
         message.not_relevanted
         p message
         message.save
