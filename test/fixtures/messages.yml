@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   employee: MyString
+  url: MyString
+  email: MyString
+  commit: MyText
+
+two:
+   employee: MyString
+  url: MyString
+  email: MyString
+  commit: MyText

@@ -1,0 +1,8 @@
+<h1><%= I18n.t('editing_message')%></h1>
+
+<%= render 'form' %>
+
+
+<%= link_to I18n.t('change_state'), status_message_path(@message.id , @message.aasm_state),  method: :patch %>
+<%= link_to I18n.t('show'), @message %> |
+<%= link_to I18n.t('back'), messages_path %>
