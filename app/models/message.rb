@@ -1,5 +1,8 @@
 class Message < ActiveRecord::Base
+  belongs_to :user
   include AASM
+
+  scope :from_user_id, ->(id) { where(user_id: id) }
 
   aasm do
     state :new, :initial => true

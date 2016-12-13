@@ -1,10 +1,11 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
+  before_filter :authenticate_user!
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.from_user_id(current_user.id)
   end
 
   def status
@@ -33,7 +34,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message =  current_user.messages.new(message_params)
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: I18n.t('message_created') }
