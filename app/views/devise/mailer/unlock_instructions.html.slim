@@ -1,0 +1,7 @@
+p = I18n.t('Hello') = @resource.email
+
+p = I18n.t('lock_message')
+
+p = I18n.t('click_unlock')
+
+p = link_to I18n.t('unlock_my_account'), unlock_url(@resource, :unlock_token => @token)
