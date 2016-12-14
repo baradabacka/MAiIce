@@ -1,5 +1,6 @@
 h1 = I18n.t('listing_messages')
 
+
 table
   thead
     th = link_to I18n.t('sorting_created_at'), sorting_messages_path(sort: 'created_at')
@@ -34,3 +35,6 @@ table
 br
 
   = link_to I18n.t('new_message'), new_message_path
+.field
+  = text_field_tag :check
+  = link_to I18n.t('check'), check_messages_path(params[:check])

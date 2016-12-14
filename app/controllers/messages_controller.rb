@@ -27,6 +27,15 @@ class MessagesController < ApplicationController
     render 'index'
   end
 
+  def check
+    @messages = Message.all
+    if check == @messages
+      render 'check'
+    else
+      @messages = Nil
+    end
+  end
+
 
   # GET /messages/1
   # GET /messages/1.json
