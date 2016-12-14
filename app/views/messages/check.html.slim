@@ -1,12 +1,14 @@
-- if @messages != Nil
+h1 = I18n.t('listing_employee')
+
+- if @message.present?
   table
     thead
       tr
-        th = I18n.t('employee')
+        td = I18n.t('employee_processed_email')
+        td = I18n.t('email')
     tbody
-
-      - @messages.each do |message|
-        tr
-          td = message.employee
-else
-  = puts 'this Email unused'
+      tr
+        td = @message.employee
+        td = @message.email
+- else
+  = I18n.t('not_processed_email')

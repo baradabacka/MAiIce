@@ -29,6 +29,7 @@ GEM
     arel (4.0.2)
     bcrypt (3.1.11)
     builder (3.1.4)
+    byebug (9.0.6)
     chronic (0.10.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -128,6 +129,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  byebug
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 1.2)
@@ -142,4 +144,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.13.2
+   1.13.6

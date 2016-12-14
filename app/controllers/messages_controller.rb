@@ -28,12 +28,7 @@ class MessagesController < ApplicationController
   end
 
   def check
-    @messages = Message.all
-    if check == @messages
-      render 'check'
-    else
-      @messages = Nil
-    end
+    @message = Message.find_by(email: params[:checking_email])
   end
 
 

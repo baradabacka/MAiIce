@@ -5,7 +5,7 @@ IceMail::Application.routes.draw do
     end
     collection do
       get :sorting
-      get :check
+      post :check
     end
   end
 
