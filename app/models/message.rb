@@ -2,8 +2,8 @@ class Message < ActiveRecord::Base
   belongs_to :user
   include AASM
 
-  scope :for_user, ->(user_id) { where(user_id: user_id) }
-  scope :for_state, ->(state, user_id) { where(aasm_state: state).where(user_id: user_id) }
+  scope :for_user, ->(user) { where(user_id: user.id) }
+  scope :for_state, ->(state) { where(aasm_state: state) }
 
   aasm do
     state :new, :initial => true
