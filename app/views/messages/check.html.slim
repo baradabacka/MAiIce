@@ -1,0 +1,12 @@
+- if @messages != Nil
+  table
+    thead
+      tr
+        th = I18n.t('employee')
+    tbody
+
+      - @messages.each do |message|
+        tr
+          td = message.employee
+else
+  = puts 'this Email unused'
