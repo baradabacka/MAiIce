@@ -61,6 +61,8 @@ en:
   remember_me: "Remember me"
   resend_unlock_instructions: "Resend unlock instructions"
   resend_confirmation_instructions: "Resend confirmation instructions"
+  sorting_created_at: "Sort by creation date "
+  sorting_aasm_state: "Sort by state"
   show: "Show"
   sign_up: "Sign up"
   sign_in: "Sign in"

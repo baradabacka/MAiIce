@@ -1,0 +1,36 @@
+h1 = I18n.t('listing_messages')
+
+table
+  thead
+    th = link_to I18n.t('sorting_created_at'), sorting_messages_path(sort: 'created_at')
+    th =' link_to I18n.t('sorting_aasm_state'), sorting_messages_path(sort: 'aasm_state')
+    tr
+      th = I18n.t('employee')
+      th = I18n.t('url')
+      th = I18n.t('email')
+      th = I18n.t('commit')
+      th = I18n.t('time_of_creation')
+      th = I18n.t('time_updates')
+      th = I18n.t('state')
+      th
+      th
+      th
+  tbody
+
+    - @messages.each do |message|
+      tr
+        td = message.employee
+        td = message.url
+        td = message.email
+        td = message.commit
+        td = message.created_at
+        td = message.updated_at
+        td = message.aasm_state
+        td = link_to I18n.t('show'), message
+        td = link_to I18n.t('edit'), edit_message_path(message)
+        td = link_to I18n.t('destroy'), message, method: :delete, data: { confirm: I18n.t('are_you_sure?') }
+      </tr>
+
+br
+
+  = link_to I18n.t('new_message'), new_message_path

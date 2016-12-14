@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.from_user_id(current_user.id)
+    @messages = Message.for_user(current_user)
   end
 
   def status
@@ -16,6 +16,17 @@ class MessagesController < ApplicationController
     end
     render 'edit'
   end
+
+  def sorting
+    # if params[:sort] == 'aasm_state'
+    #   # state = Message.aasm.states.map(&:name)
+    #   # @messages = Message.for_state(state[0], current_user.id).merge(Message.for_state(state[1], current_user.id)).merge(Message.for_state(state[2], current_user.id))
+    # else
+      @messages = Message.for_user(current_user).order(params[:sort])
+    # end
+    render 'index'
+  end
+
 
   # GET /messages/1
   # GET /messages/1.json
