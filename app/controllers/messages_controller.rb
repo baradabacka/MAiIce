@@ -17,6 +17,20 @@ class MessagesController < ApplicationController
     render 'edit'
   end
 
+  def sorting
+    if params[:sort] == 'aasm_state'
+      state = ['working','completed','not_relevanted']
+      @messages = Message.from_user_id(current_user.id).from_state_sort('new')
+      state.each do |state|
+        @messages += Message.from_user_id(current_user.id).from_state_sort(state)
+      end
+    else
+      @messages = Message.from_user_id(current_user.id).order(params[:sort])
+    end
+    render 'index'
+  end
+
+
   # GET /messages/1
   # GET /messages/1.json
   def show

@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   include AASM
 
   scope :from_user_id, ->(id) { where(user_id: id) }
+  scope :from_state_sort, ->(state) { where(aasm_state: state) }
 
   aasm do
     state :new, :initial => true

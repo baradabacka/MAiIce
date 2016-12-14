@@ -1,10 +1,13 @@
 doctipe html
 html
 - if user_signed_in?
-    span = I18n.t('hello') = current_user.email
+    span = I18n.t('hello')
+    = current_user.email
     = link_to I18n.t('exit'), destroy_user_session_path, :method => :delete
- else
-    = link_to I18n.t('login'), new_user_session_path  ==или = link_to I18n.t('sign_up'), new_user_registration_path
+- else
+    = link_to I18n.t('login'), new_user_session_path
+    | или 
+    = link_to I18n.t('sign_up'), new_user_registration_path
 
 ul
   li = link_to I18n.t('message'), messages_path

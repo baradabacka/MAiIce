@@ -1,7 +1,9 @@
 = form_for(@message) do |f|
   - if @message.errors.any?
-    id="error_explanation"
-      h2 = pluralize(@message.errors.count, "error") = I18n.t('prohibited_this_message_from_being_saved')
+    #error_explanation
+      h2
+        = pluralize(@message.errors.count, "error")
+        = I18n.t('prohibited_this_message_from_being_saved')
 
         ul
           - @message.errors.full_messages.each do |msg|
@@ -9,26 +11,28 @@
 
   .field
     = f.label I18n.t('employee')
+    br
     = f.text_field :employee
 
   .field
     = f.label I18n.t('url')
+    br
     = f.text_field :url
 
   .field
     = f.label I18n.t('email')
+    br
     = f.text_field :email
 
   .field
     = f.label I18n.t('commit')
+    br
     = f.text_area :commit
 
-  div
-    = f.label :aasm_state
+  .field
+    = f.label I18n.t('aasm_state')
+    br
     = f.text_field :aasm_state
-
-  div
-    = I18n.t('time_now')= Time.now
 
   .actions
     = f.submit

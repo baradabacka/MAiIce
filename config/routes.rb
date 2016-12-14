@@ -3,9 +3,12 @@ IceMail::Application.routes.draw do
     member do
       patch :status
     end
+    collection do
+      get :sorting
+    end
   end
 
-  
+
   devise_for :users
   get "persons/profile", as: 'user_root'
 
