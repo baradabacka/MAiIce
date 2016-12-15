@@ -1,11 +1,15 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
+  before_filter :collect_states, only: [:index, :sorting]
+  before_filter :for_user, only: [:index, :sorting]
+  before_filter :group_state, only: [:index, :sorting]
 
   # GET /messages
   # GET /messages.json
+
   def index
-    @messages = Message.for_user(current_user)
+    @messages = @for_user
   end
 
   def status
@@ -18,12 +22,15 @@ class MessagesController < ApplicationController
   end
 
   def sorting
-    # if params[:sort] == 'aasm_state'
-    #   # state = Message.aasm.states.map(&:name)
-    #   # @messages = Message.for_state(state[0], current_user.id).merge(Message.for_state(state[1], current_user.id)).merge(Message.for_state(state[2], current_user.id))
-    # else
-      @messages = Message.for_user(current_user).order(params[:sort])
-    # end
+
+    if params[:sort] == 'aasm_state'
+      @messages = []
+      @states.each do |status|
+        @messages += @for_user.for_state(status)
+      end
+    else
+      @messages = @for_user.order(params[:sort])
+    end
     render 'index'
   end
 
@@ -89,6 +96,18 @@ class MessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
+    end
+
+    def for_user
+      @for_user = Message.for_user(current_user)
+    end
+
+    def collect_states
+      @states = Message.aasm.states.map(&:name)
+    end
+
+    def group_state
+      @group_state = @for_user.group(:aasm_state).count
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
