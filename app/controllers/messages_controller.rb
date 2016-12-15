@@ -20,14 +20,15 @@ class MessagesController < ApplicationController
   end
 
   def sorting
+    for_user = Message.for_user(current_user)
     if params[:sort] == 'aasm_state'
       stating = Message.aasm.states.map(&:name)
-      @messages = Message.for_state(stating[0])|Message.for_state(stating[1])|Message.for_state(stating[2])|Message.for_state(stating[3])
+      @messages = for_user.for_state(stating[0])|for_user.for_state(stating[1])|for_user.for_state(stating[2])|for_user.for_state(stating[3])
     else
-      @messages = Message.for_user(current_user).order(params[:sort])
+      @messages = for_user.order(params[:sort])
     end
     @states = Message.aasm.states.map(&:name)
-    @group_state = Message.for_user(current_user).group(:aasm_state).count
+    @group_state = for_user.group(:aasm_state).count
     render 'index'
   end
 
