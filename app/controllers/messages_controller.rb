@@ -6,6 +6,8 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.for_user(current_user)
+    @states = Message.aasm.states.map(&:name)
+    @group_state = @messages.group(:aasm_state).count
   end
 
   def status
