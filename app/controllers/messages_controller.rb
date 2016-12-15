@@ -27,6 +27,10 @@ class MessagesController < ApplicationController
     render 'index'
   end
 
+  def check
+    @message = Message.find_by(email: params[:checking_email])
+  end
+
 
   # GET /messages/1
   # GET /messages/1.json

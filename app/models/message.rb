@@ -1,10 +1,10 @@
 class Message < ActiveRecord::Base
   belongs_to :user
+  validates :email, uniqueness: true
   include AASM
 
   scope :for_user, ->(user) { where(user_id: user.id) }
   scope :for_state, ->(state) { where(aasm_state: state) }
-
   aasm do
     state :new, :initial => true
     state :working, :completed, :not_relevanted
