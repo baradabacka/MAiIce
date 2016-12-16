@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%-d %B %Y"
+      short: "%-d %b"
+      month: "%b"
   are_you_sure?: "Are you sure ?"
   back: "Back"
   change_state: "Change state"

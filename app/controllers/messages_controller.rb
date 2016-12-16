@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
-  before_filter :collect_states, only: [:index, :sorting]
-  before_filter :for_user, only: [:index, :sorting]
+  before_filter :collect_states, only: [:index, :sorting, :sorting_by_month]
+  before_filter :for_user, only: [:index, :sorting, :sorting_by_month]
   before_filter :group_state, only: [:index, :sorting]
 
   # GET /messages
@@ -10,6 +10,17 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @for_user
+  end
+
+  def offseted_time(offset)
+    @time_beginning = Time.now.beginning_of_month-offset.months
+  end
+
+  def sorting_by_month
+    @messages = []
+    6.times.each do |i|
+      @messages[i] = [offseted_time(i), @for_user.where(created_at: (offseted_time(i)).to_s..(offseted_time(i) + 1.month).to_s).group_by { |hsh| hsh[:aasm_state] }]
+    end
   end
 
   def status
@@ -22,7 +33,6 @@ class MessagesController < ApplicationController
   end
 
   def sorting
-
     if params[:sort] == 'aasm_state'
       @messages = []
       @states.each do |status|
