@@ -1,0 +1,13 @@
+table
+  thead
+    - @messages.each do |message|
+      - if message.last.present?
+        tr
+          th  = I18n.l(message.first, format: :month)
+        tbody
+        - @states.each do |state|
+          - if message.last.key? state.to_s
+            td = state
+            td = p("=")
+            
+            td = message.last[state.to_s]&.count.to_i

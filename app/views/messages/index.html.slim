@@ -5,6 +5,7 @@ table
   thead
     th = link_to I18n.t('sorting_created_at'), sorting_messages_path(sort: 'created_at')
     th =' link_to I18n.t('sorting_aasm_state'), sorting_messages_path(sort: 'aasm_state')
+    th =' link_to I18n.t('sorting_aasm_state'), sorting_by_month_messages_path
     tr
       th = I18n.t('employee')
       th = I18n.t('url')

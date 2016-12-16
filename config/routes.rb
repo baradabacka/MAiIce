@@ -6,6 +6,7 @@ IceMail::Application.routes.draw do
     collection do
       get :sorting
       post :check
+      get :sorting_by_month
     end
   end
 
