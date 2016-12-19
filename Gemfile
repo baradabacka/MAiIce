@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 gem 'slim'
 
+gem "activeadmin", github: "gregbell/active_admin"
+
 gem 'devise'
+
+gem 'jquery-ui-rails'
 
 gem 'aasm'
 
