@@ -1,9 +1,9 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
-  before_filter :collect_states, only: [:index, :sorting, :sorting_by_month]
-  before_filter :for_user, only: [:index, :sorting, :sorting_by_month]
-  before_filter :group_state, only: [:index, :sorting]
+  before_filter :collect_states, only: [:message_user, :index, :sorting, :sorting_by_month]
+  before_filter :for_user, only: [:message_user, :index, :sorting, :sorting_by_month]
+  before_filter :group_state, only: [:message_user, :index, :sorting]
 
   # GET /messages
   # GET /messages.json
@@ -30,6 +30,16 @@ class MessagesController < ApplicationController
       @message.work
     end
     render 'edit'
+  end
+
+  def send_message
+    @send_message = Message.find_by( id: params[:id]).email
+  end
+
+  def message_user
+    UserMailer.message_to_the_user(send_message, params[:message_user]).deliver
+    @messages = @for_user
+    render 'index'
   end
 
   def sorting

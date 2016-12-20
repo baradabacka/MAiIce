@@ -74,6 +74,7 @@ en:
   sorting_created_at: "Sort by creation date "
   sorting_aasm_state: "Sort by state"
   show: "Show"
+  send_message: "Send message"
   sign_up: "Sign up"
   sign_in: "Sign in"
   state: "State"

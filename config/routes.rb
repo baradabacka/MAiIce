@@ -4,6 +4,8 @@ IceMail::Application.routes.draw do
   resources :messages do
     member do
       patch :status
+      get :send_message
+      post :message_user
     end
     collection do
       get :sorting
