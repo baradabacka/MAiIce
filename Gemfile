@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'slim'
 
 gem "activeadmin", github: "gregbell/active_admin"

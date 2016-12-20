@@ -2,14 +2,13 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
   before_filter :collect_states, only: [:message_user, :index, :sorting, :sorting_by_month]
-  before_filter :for_user, only: [:message_user, :index, :sorting, :sorting_by_month]
+  before_filter :for_user, only: [:send_message, :message_user, :index, :sorting, :sorting_by_month]
   before_filter :group_state, only: [:message_user, :index, :sorting]
 
   # GET /messages
   # GET /messages.json
 
   def index
-    @messages = @for_user
   end
 
   def offseted_time(offset)
@@ -33,12 +32,15 @@ class MessagesController < ApplicationController
   end
 
   def send_message
-    @send_message = Message.find_by( id: params[:id]).email
+    # message = @for_user.find_by(id: params[:id])
+    # redirect_to :back unless message
+    # @send_message = message.email
   end
 
   def message_user
-    UserMailer.message_to_the_user(send_message, params[:message_user]).deliver
-    @messages = @for_user
+    message = @for_user.find_by(id: params[:id])
+    return redirect_to :index unless message
+    UserMailer.message_to_the_user(message.email, params[:message_user]).deliver
     render 'index'
   end
 
@@ -120,6 +122,7 @@ class MessagesController < ApplicationController
 
     def for_user
       @for_user = Message.for_user(current_user)
+      @messages = @for_user
     end
 
     def collect_states

@@ -60,6 +60,7 @@ en:
   message: "Message"
   message_created: "Message was successfully created."
   message_updated: "Message was successfully updated."
+  message_from_IceMail: "Message from IceMail"
   new: "New"
   new_message: "New Message"
   new_password: "New Password"

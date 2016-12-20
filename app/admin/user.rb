@@ -22,7 +22,4 @@ form do |f|
   end
   actions
 end
-# action_item :activate_mindbody, only: :show do
-#   link_to 'send message', UserMailer.message_to_the_user(user).deliver_now
-# end
 end
