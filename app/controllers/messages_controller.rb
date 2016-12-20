@@ -32,9 +32,6 @@ class MessagesController < ApplicationController
   end
 
   def send_message
-    # message = @for_user.find_by(id: params[:id])
-    # redirect_to :back unless message
-    # @send_message = message.email
   end
 
   def message_user
