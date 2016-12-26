@@ -71,6 +71,7 @@ class MessagesController < ApplicationController
   # GET /messages/1/edit
   def edit
     message = @for_user.find_by(id: params[:id])
+    return redirect_to :index unless message
     @available_states = [[message.aasm_state, message.aasm_state]]
     @available_states += message.aasm.states(permitted:true).map{|state|[state.name,state.name]}
   end
@@ -126,7 +127,7 @@ class MessagesController < ApplicationController
     end
 
     def collect_states
-      @states = Message.aasm.states.map(&:name)
+      @states = Message.aasm.states.map{|state| state.name.to_s}
     end
 
     def group_state

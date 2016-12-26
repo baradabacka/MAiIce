@@ -8,12 +8,8 @@
       .col-md-2
           = I18n.l(message.first, format: :month)
       - @states.each do |state|
-        - if message.last.key? state.to_s
-          .col-md-2
-            = message.last[state.to_s]&.count.to_i
-        - else
-          .col-md-2
-            = 0
+        .col-md-2
+          =  message.last.key?(state) ? message.last[state].count : 0
       .col-md-2
 footer.gradient_green1
   .container
