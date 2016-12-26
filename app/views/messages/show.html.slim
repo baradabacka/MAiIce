@@ -1,20 +1,30 @@
-p.notice = notice
+.container.container_top
+  .backdround_lightgray.border_my
+    .row
+      .col-md-3
+      .col-md-1 = I18n.t('employee')
+      .col-md-8 = @message. employee
 
-p
-  strong = I18n.t('employee')
-  = @message. employee
+    .row
+      .col-md-3
+      .col-md-1 = I18n.t('url')
+      .col-md-8  = @message.url
 
-p
-  strong = I18n.t('url')
-  = @message.url
+    .row
+      .col-md-3
+      .col-md-1 = I18n.t('email')
+      .col-md-8  = @message.email
 
-p
-  strong = I18n.t('email')
-  = @message.email
-
-p
-  strong = I18n.t('commit')
-  = @message.commit
-
-= link_to I18n.t('edit'), edit_message_path(@message)
-= link_to I18n.t('back'), messages_path
+    .row
+      .col-md-3
+      .col-md-1 = I18n.t('commit')
+      .col-md-7 = @message.commit
+      .col-md-1
+footer.gradient_green1
+  .container
+    .row
+      .col-md-2
+        .btn-group
+          .btn = link_to I18n.t('edit'), edit_message_path(@message)
+          .btn= link_to I18n.t('back'), messages_path
+      .col-md-10

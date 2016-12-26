@@ -48,7 +48,12 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (4.0.2)
+    autoprefixer-rails (6.5.4)
+      execjs
     bcrypt (3.1.11)
+    bootstrap-sass (3.3.5)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
@@ -143,6 +148,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    scrollbar-rails (1.0.0)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -182,6 +188,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   activeadmin!
+  bootstrap-sass
   byebug
   coffee-rails (~> 4.0.0)
   devise
@@ -192,6 +199,7 @@ DEPENDENCIES
   pg
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
+  scrollbar-rails
   sdoc
   slim
   turbolinks
