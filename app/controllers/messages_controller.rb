@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
   before_filter :collect_states, only: [:message_user, :index, :sorting, :sorting_by_month]
-  before_filter :for_user, only: [:send_message, :message_user, :index, :sorting, :sorting_by_month]
+  before_filter :for_user, only: [:edit, :send_message, :message_user, :index, :sorting, :sorting_by_month]
   before_filter :group_state, only: [:message_user, :index, :sorting]
 
   # GET /messages
@@ -70,6 +70,10 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
+    message = @for_user.find_by(id: params[:id])
+    return redirect_to :index unless message
+    @available_states = [[message.aasm_state, message.aasm_state]]
+    @available_states += message.aasm.states(permitted:true).map{|state|[state.name,state.name]}
   end
 
   # POST /messages
@@ -123,7 +127,7 @@ class MessagesController < ApplicationController
     end
 
     def collect_states
-      @states = Message.aasm.states.map(&:name)
+      @states = Message.aasm.states.map{|state| state.name.to_s}
     end
 
     def group_state

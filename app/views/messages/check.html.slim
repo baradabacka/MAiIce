@@ -1,14 +1,24 @@
-h1 = I18n.t('listing_employee')
+.container.container_top
+  .row
+    .col-md-5
+    .col-md-7 = I18n.t('listing_employee')
 
-- if @message.present?
-  table
-    thead
-      tr
-        td = I18n.t('employee_processed_email')
-        td = I18n.t('email')
-    tbody
-      tr
-        td = @message.employee
-        td = @message.email
-- else
-  = I18n.t('not_processed_email')
+  - if @message.present?
+    .row.backdround_lightgray.border_my
+      .col-md-3
+      .col-md-3 = I18n.t('employee_processed_email')
+      .col-md-6 = I18n.t('email')
+
+    .row.backdround_lightgray.border_my
+      .col-md-4
+      .col-md-2 = @message.employee
+      .col-md-6 = @message.email
+  - else
+    .row.error_background
+      .col-md-5
+      .col-md-7 = I18n.t('not_processed_email')
+footer.gradient_green1
+  .container
+    .row
+      .col-md-2 = link_to I18n.t('back'), messages_path
+      .col-md-7

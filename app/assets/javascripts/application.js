@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-sprockets
+//= require jquery.mCustomScrollbar
 //= require turbolinks
 //= require_tree .

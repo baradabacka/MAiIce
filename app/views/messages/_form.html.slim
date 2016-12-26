@@ -1,38 +1,52 @@
 = form_for(@message) do |f|
   - if @message.errors.any?
     #error_explanation
-      h2
-        = pluralize(@message.errors.count, "error")
-        = I18n.t('prohibited_this_message_from_being_saved')
+      .container.error_background
+        .row
+          .col-md-12
+            =' pluralize(@message.errors.count, "error")
+            = I18n.t('prohibited_this_message_from_being_saved')
+          ul
+            - @message.errors.full_messages.each do |msg|
+              li = msg
+  .container.backdround_lightgray.border_my
+    .row
+      .field
+        .col-md-3
+        .col-md-2 = f.label I18n.t('employee')
+        .col-md-1 = f.text_field :employee
+        .col-md-6
 
-        ul
-          - @message.errors.full_messages.each do |msg|
-            li = msg
+    .row
+      .field
+        .col-md-3
+        .col-md-2 = f.label I18n.t('url')
+        .col-md-1 = f.text_field :url
+        .col-md-6
 
-  .field
-    = f.label I18n.t('employee')
-    br
-    = f.text_field :employee
+    .row
+      .field
+        .col-md-3
+        .col-md-2 = f.label I18n.t('email')
+        .col-md-1 = f.text_field :email
+        .col-md-6
 
-  .field
-    = f.label I18n.t('url')
-    br
-    = f.text_field :url
+    .row
+      .field
+        .col-md-3
+        .col-md-2 = f.label I18n.t('commit')
+        .col-md-1 = f.text_area :commit
+        .col-md-6
 
-  .field
-    = f.label I18n.t('email')
-    br
-    = f.text_field :email
-
-  .field
-    = f.label I18n.t('commit')
-    br
-    = f.text_area :commit
-
-  .field
-    = f.label I18n.t('aasm_state')
-    br
-    = f.text_field :aasm_state
-
-  .actions
-    = f.submit
+    - unless @message.new_record?
+      .row
+        .field
+          .col-md-3
+          .col-md-2 = f.label I18n.t('aasm_state')
+          .col-md-1 = f.select :aasm_state, @available_states
+          .col-md-6
+    .row
+      .actions
+        .col-md-3
+        .col-md-2 = f.submit
+        .col-md-7

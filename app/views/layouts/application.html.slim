@@ -1,24 +1,23 @@
-doctipe html
+doctype html
 html
-- if user_signed_in?
-    span = I18n.t('hello')
-    = current_user.email
-    = link_to I18n.t('exit'), destroy_user_session_path, :method => :delete
-- else
-    = link_to I18n.t('login'), new_user_session_path
-    | или 
-    = link_to I18n.t('sign_up'), new_user_registration_path
+  head
+    title = I18n.t('icemail')
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    nav.navbar
+      .container
+        .row
+          .col-md-1 = link_to image_tag("message.png"), messages_path, title:  I18n.t('message')
+          .col-md-1 = link_to image_tag("home.png"), user_root_path, title: I18n.t('home')
+          .col-md-7
+          - if user_signed_in?
+            .col-md-2 = current_user.email
+            .col-md-1 = link_to image_tag("logout.png"), destroy_user_session_path, :method => :delete, title: I18n.t('logout')
+          - else
+            .col-md-1 = link_to I18n.t('login'), new_user_session_path
+            .col-md-1 = I18n.t('or')
+            .col-md-1 = link_to I18n.t('sign_up'), new_user_registration_path
 
-ul
-  li = link_to I18n.t('message'), messages_path
-  li= link_to I18n.t('home'), user_root_path
-
-
-head
-  title IceMail
-  = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-  = javascript_include_tag "application", "data-turbolinks-track" => true
-  = csrf_meta_tags
-
-
-= yield
+    = yield

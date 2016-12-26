@@ -1,3 +1,111 @@
 // Place all the styles related to the Messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.navbar {
+  position: fixed;
+  top: 0;
+  background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
+  opacity: 1;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.container_top {
+  padding-top: 5vh;
+}
+
+.container_centr {
+  height: 80vh;
+  overflow: auto;
+  background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
+  opacity: 0.8;
+  color: black;
+}
+
+.background_string {
+  background: #D3D3D3;
+}
+
+.container_bot {
+  position: fixed;
+  bottom: 0;
+  height: 5vh;
+  background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
+  opacity: 1;
+  color: #fff;
+  width: 100%;
+}
+
+.border_my {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.color_check {
+  color: black;
+}
+
+.error_background {
+  background-image: linear-gradient(45deg, rgb(205, 92, 92), rgb(255, 0, 0));
+  border: 1px solid gray;
+}
+
+.gradient_green {
+  background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
+  opacity: 0.8;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.gradient_green1 {
+  background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
+  opacity: 0.8;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.padding_table {
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.padding_center {
+  padding-left: 60px;
+}
+
+.backdround_lightgray {
+    background: #D3D3D3;
+    opacity: 0.8;
+    color: black;
+    padding: 10px;
+}
+
+.full_size{
+  width: 100%;
+}
+
+body {
+  background: #F0FFFF;
+  margin: 0;
+}
+
+a {
+  text-decoration: underline;
+  color: white;
+}
+
+a:hover {
+  color: #CCCCCC;
+}
+
+a:active {
+  color: red;
+}

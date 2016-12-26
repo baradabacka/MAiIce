@@ -1,4 +1,14 @@
 = form_tag(message_user_message_path) do
   .field
-    = text_field_tag :message_user
-    = submit_tag I18n.t('Check')
+    .container.container_top
+      .row
+        .col-md-1
+        .col-md-9
+          = text_area_tag(:message_user, '', rows: 5, class: 'full_size')
+        .col-md-2
+    footer.gradient_green1
+      .container
+        .row
+          .col-md-2 = link_to I18n.t('back'), messages_path
+          .col-md-7
+          .col-md-3.color_check = submit_tag I18n.t('Check')

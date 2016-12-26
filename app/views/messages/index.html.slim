@@ -1,50 +1,44 @@
-h1 = I18n.t('listing_messages')
-
-
-table
-  thead
-    th = link_to I18n.t('sorting_created_at'), sorting_messages_path(sort: 'created_at')
-    th =' link_to I18n.t('sorting_aasm_state'), sorting_messages_path(sort: 'aasm_state')
-    th =' link_to I18n.t('sorting_aasm_state'), sorting_by_month_messages_path
-    tr
-      th = I18n.t('employee')
-      th = I18n.t('url')
-      th = I18n.t('email')
-      th = I18n.t('commit')
-      th = I18n.t('time_of_creation')
-      th = I18n.t('time_updates')
-      th = I18n.t('state')
-      th
-      th
-      th
-  tbody
-
-    - @messages.each do |message|
-      tr
-        td = message.employee
-        td = message.url
-        td = message.email
-        td = message.commit
-        td = message.created_at
-        td = message.updated_at
-        td = message.aasm_state
-        td = link_to I18n.t('show'), message
-        td = link_to I18n.t('edit'), edit_message_path(message)
-        td = link_to I18n.t('destroy'), message, method: :delete, data: { confirm: I18n.t('are_you_sure?') }
-        td = link_to I18n.t('send_message'), send_message_message_path(message.id)
-
-thead
-  - @states.each do |state|
-      tr
-        th =' state
-        | =
-        th =' @group_state[state.to_s].to_i
-
-br
-
-  = link_to I18n.t('new_message'), new_message_path
-
-= form_tag(check_messages_path) do
-  .field
-    = text_field_tag :checking_email
-    = submit_tag I18n.t('Check')
+.container.container_top
+  .row
+    .col-md-1 = link_to image_tag("new_message.png"), new_message_path, title: I18n.t('new_message')
+    .col-md-4
+    .col-md-2 = I18n.t('listing_messages')
+    .col-md-2
+    .col-md-3
+      = form_tag(check_messages_path) do
+        .field
+          = text_field_tag :checking_email
+          = submit_tag I18n.t('Check')
+  .row.gradient_green
+    .col-md-1 = I18n.t('employee')
+    .col-md-2 = I18n.t('url')
+    .col-md-2 = I18n.t('email')
+    .col-md-2 = I18n.t('commit')
+    .col-md-2.padding_center = link_to I18n.t('time_of_creation'), sorting_messages_path(sort: 'created_at')
+    .col-md-1 = link_to I18n.t('state'), sorting_messages_path(sort: 'aasm_state')
+    .col-md-1 = I18n.t('action')
+    .col-md-1
+.container.container_centr
+  - @messages.each do |message|
+    .row.border_my.background_string
+        .col-md-1 = message.employee
+        .col-md-2 = truncate(message.url,length: 20)
+        .col-md-2 = message.email
+        .col-md-3.center = truncate(message.commit,length: 40)
+        .col-md-1.small = I18n.l(message.created_at, format: :long)
+        .col-md-1 = message.aasm_state
+        .col-md-2
+          .btn-group = link_to image_tag("show.png"), message, title: I18n.t('show')
+          .btn-group = link_to image_tag("edit.png"), edit_message_path(message), title: I18n.t('edit')
+          .btn-group = link_to image_tag("delete.png"), message, title: I18n.t('destroy'), method: :delete, data: { confirm: I18n.t('are_you_sure?') }
+          .btn-group = link_to image_tag("send_message.png"), send_message_message_path(message.id), title: I18n.t('send_message')
+.container.container_bot
+  .container
+    .row.capitalize
+      - @states.each do |state|
+        .col-md-2
+          = state
+          br
+          = @group_state[state] || 0
+      .col-md-4.em = link_to I18n.t('show_data_of_the_last_6_months_group(p)ed_by_status'), sorting_by_month_messages_path
+    .row
