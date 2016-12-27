@@ -2,6 +2,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
   validates :email, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  paginates_per 15
   include AASM
 
   scope :for_user, ->(user) { where(user_id: user.id) }

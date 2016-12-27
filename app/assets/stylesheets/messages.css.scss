@@ -16,11 +16,12 @@
 }
 
 .container_centr {
-  height: 80vh;
-  overflow: auto;
   background-image: linear-gradient(45deg, rgb(237, 162, 171), rgb(48, 50, 105));
   opacity: 0.8;
   color: black;
+}
+.text_centr {
+  text-align:center
 }
 
 .background_string {
@@ -90,6 +91,26 @@
 
 .full_size{
   width: 100%;
+}
+.pagination {
+   display: inline-block;
+   padding: 0;
+   margin: 0;
+}
+
+.pagination > li {display: inline;}
+
+.pagination > li > a {
+   color: black;
+   float: center;
+   padding: 5px 10px;
+   text-decoration: none;
+   background-color: transparent;
+   border: none;
+}
+.pagination > .active > a {
+    background-color: #D3D3D3;
+    color: black;
 }
 
 body {
