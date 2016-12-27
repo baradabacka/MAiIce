@@ -123,7 +123,8 @@ class MessagesController < ApplicationController
 
     def for_user
       @for_user = Message.for_user(current_user)
-      @messages = @for_user
+      
+      @messages = @for_user.page(params[:page])
     end
 
     def collect_states

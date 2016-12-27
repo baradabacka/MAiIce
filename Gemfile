@@ -12,6 +12,8 @@ gem 'jquery-ui-rails'
 
 gem 'aasm'
 
+gem 'kaminari'
+
 gem 'scrollbar-rails'
 
 gem 'whenever', require: false

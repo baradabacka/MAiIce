@@ -32,6 +32,8 @@
           .btn-group = link_to image_tag("edit.png"), edit_message_path(message), title: I18n.t('edit')
           .btn-group = link_to image_tag("delete.png"), message, title: I18n.t('destroy'), method: :delete, data: { confirm: I18n.t('are_you_sure?') }
           .btn-group = link_to image_tag("send_message.png"), send_message_message_path(message.id), title: I18n.t('send_message')
+  .row.text_centr
+    .col-md-12 = paginate(@messages)
 .container.container_bot
   .container
     .row.capitalize
