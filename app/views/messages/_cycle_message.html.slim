@@ -1,0 +1,5 @@
+- @messages.each do |message|
+  .row.border_my.background_string id="message-#{message.id}"
+    = render 'message', message: message
+.row.text_centr
+  .col-md-12 = paginate(@messages)

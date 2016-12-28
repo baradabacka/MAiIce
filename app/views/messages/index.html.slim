@@ -1,6 +1,7 @@
+div id="modal-window" class="modal background_gray " role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 .container.container_top
   .row
-    .col-md-1 = link_to image_tag("new_message.png"), new_message_path, title: I18n.t('new_message')
+    .col-md-1 = link_to image_tag("new_message.png"), new_message_path, {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', title: I18n.t('new_message')}
     .col-md-4
     .col-md-2 = I18n.t('listing_messages')
     .col-md-2
@@ -18,22 +19,8 @@
     .col-md-1 = link_to I18n.t('state'), sorting_messages_path(sort: 'aasm_state')
     .col-md-1 = I18n.t('action')
     .col-md-1
-.container.container_centr
-  - @messages.each do |message|
-    .row.border_my.background_string
-        .col-md-1 = message.employee
-        .col-md-2 = truncate(message.url,length: 20)
-        .col-md-2 = message.email
-        .col-md-3.center = truncate(message.commit,length: 40)
-        .col-md-1.small = I18n.l(message.created_at, format: :long)
-        .col-md-1 = message.aasm_state
-        .col-md-2
-          .btn-group = link_to image_tag("show.png"), message, title: I18n.t('show')
-          .btn-group = link_to image_tag("edit.png"), edit_message_path(message), title: I18n.t('edit')
-          .btn-group = link_to image_tag("delete.png"), message, title: I18n.t('destroy'), method: :delete, data: { confirm: I18n.t('are_you_sure?') }
-          .btn-group = link_to image_tag("send_message.png"), send_message_message_path(message.id), title: I18n.t('send_message')
-  .row.text_centr
-    .col-md-12 = paginate(@messages)
+.container.container_centr id="cycle_message"
+  = render 'cycle_message'
 .container.container_bot
   .container
     .row.capitalize

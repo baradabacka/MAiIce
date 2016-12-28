@@ -16,5 +16,4 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require jquery.mCustomScrollbar
-//= require turbolinks
 //= require_tree .

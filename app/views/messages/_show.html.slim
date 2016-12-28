@@ -1,0 +1,28 @@
+.container.background_modal_window.non_padding_modal
+  .modal-header.gradient_green1
+    .text_right = link_to '×', messages_path
+    h3.text_centr id="myModalLabel" = I18n.t("show")
+  .modal-body.non_padding
+      .backdround_lightgray.border_my
+        .row
+          .col-md-3
+          .col-md-1 = I18n.t('employee')
+          .col-md-8 = @message. employee
+
+        .row
+          .col-md-3
+          .col-md-1 = I18n.t('url')
+          .col-md-8  = @message.url
+
+        .row
+          .col-md-3
+          .col-md-1 = I18n.t('email')
+          .col-md-8  = @message.email
+
+        .row
+          .col-md-3
+          .col-md-1 = I18n.t('commit')
+          .col-md-7.word-wrap = @message.commit
+          .col-md-1
+  .modal-footer.non_padding
+    footer.gradient_green1

@@ -1,0 +1,11 @@
+.col-md-1 = message.employee
+.col-md-2 = truncate(message.url,length: 20)
+.col-md-2 = truncate(message.email,length: 25)
+.col-md-3.center = truncate(message.commit,length: 40)
+.col-md-1.small = I18n.l(message.created_at, format: :long)
+.col-md-1 = message.aasm_state
+.col-md-2
+  .btn-group = link_to image_tag("show.png"), message, {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', title: I18n.t('show')}
+  .btn-group = link_to image_tag("edit.png"), edit_message_path(message), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', title: I18n.t('edit')}
+  .btn-group = link_to image_tag("delete.png"), message, title: I18n.t('destroy'), method: :delete, data: { confirm: I18n.t('are_you_sure?') }
+  .btn-group = link_to image_tag("send_message.png"), send_message_message_path(message.id), title: I18n.t('send_message')

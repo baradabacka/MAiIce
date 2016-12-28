@@ -1,4 +1,6 @@
-= form_for(@message) do |f|
+modal ||= false
+= form_for(@message, remote: modal) do |f|
+
   - if @message.errors.any?
     #error_explanation
       .container.error_background
