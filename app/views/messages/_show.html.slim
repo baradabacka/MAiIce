@@ -1,7 +1,7 @@
 .container.background_modal_window.non_padding_modal
   .modal-header.gradient_green1
-    .text_right = link_to '×', messages_path
-    h3.text_centr id="myModalLabel" = I18n.t("show")
+    .text_right = link_to I18n.t('×'), messages_path
+    h3.text_centr id="myModalLabel" = I18n.t('show')
   .modal-body.non_padding
       .backdround_lightgray.border_my
         .row

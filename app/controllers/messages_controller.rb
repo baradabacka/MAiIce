@@ -62,19 +62,11 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # GET /messages/new
   def new
     @message = Message.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # GET /messages/1/edit
@@ -83,10 +75,6 @@ class MessagesController < ApplicationController
     return redirect_to :index unless message
     @available_states = [[message.aasm_state, message.aasm_state]]
     @available_states += message.aasm.states(permitted:true).map{|state|[state.name,state.name]}
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # POST /messages

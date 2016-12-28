@@ -1,7 +1,7 @@
 .container.background_modal_window.non_padding_modal
   .modal-header.gradient_green1
-    .text_right = link_to '×', messages_path
-    h3.text_centr id="myModalLabel" = I18n.t("edit")
+    .text_right = link_to I18n.t('×'), messages_path
+    h3.text_centr id='myModalLabel' = I18n.t('edit')
   .modal-body.non_padding
     = render 'form', modal: true
   .modal-footer.non_padding

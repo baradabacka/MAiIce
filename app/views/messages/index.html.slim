@@ -1,4 +1,4 @@
-div id="modal-window" class="modal background_gray " role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+div id='modal-window' class="modal background_gray " role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'
 .container.container_top
   .row
     .col-md-1 = link_to image_tag("new_message.png"), new_message_path, {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', title: I18n.t('new_message')}
@@ -19,7 +19,7 @@ div id="modal-window" class="modal background_gray " role="dialog" aria-labelled
     .col-md-1 = link_to I18n.t('state'), sorting_messages_path(sort: 'aasm_state')
     .col-md-1 = I18n.t('action')
     .col-md-1
-.container.container_centr id="cycle_message"
+.container.container_centr id='cycle_message'
   = render 'cycle_message'
 .container.container_bot
   .container

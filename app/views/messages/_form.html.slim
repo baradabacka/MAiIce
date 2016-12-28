@@ -6,7 +6,7 @@ modal ||= false
       .container.error_background
         .row
           .col-md-12
-            =' pluralize(@message.errors.count, "error")
+            =' pluralize(@message.errors.count, 'error')
             = I18n.t('prohibited_this_message_from_being_saved')
           ul
             - @message.errors.full_messages.each do |msg|
