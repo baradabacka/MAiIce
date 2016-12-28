@@ -1,9 +1,9 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy, :status ]
   before_filter :authenticate_user!
-  before_filter :collect_states, only: [:message_user, :index, :sorting, :sorting_by_month]
-  before_filter :for_user, only: [:edit, :send_message, :message_user, :index, :sorting, :sorting_by_month]
-  before_filter :group_state, only: [:message_user, :index, :sorting]
+  before_filter :collect_states, only: [:create, :message_user, :index, :sorting, :sorting_by_month]
+  before_filter :for_user, only: [:edit, :create, :send_message, :message_user, :index, :sorting, :sorting_by_month]
+  before_filter :group_state, only: [:create, :message_user, :index, :sorting]
 
   # GET /messages
   # GET /messages.json
@@ -47,8 +47,9 @@ class MessagesController < ApplicationController
       @states.each do |status|
         @messages += @for_user.for_state(status)
       end
+      @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(15)
     else
-      @messages = @for_user.order(params[:sort])
+      @messages = @for_user.order(params[:sort]).page params[:page]
     end
     render 'index'
   end
@@ -82,11 +83,13 @@ class MessagesController < ApplicationController
     @message =  current_user.messages.new(message_params)
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: I18n.t('message_created') }
-        format.json { render action: 'show', status: :created, location: @message }
+        format.html { redirect_to messages_path, notice: I18n.t('message_created') }
+        format.json { head :no_content }
+        format.js {}
       else
         format.html { render action: 'new' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.js { render partial: 'message_errors'  }
       end
     end
   end
@@ -96,8 +99,9 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: I18n.t('message_updated') }
+        format.html { redirect_to messages_path, notice: I18n.t('message_updated') }
         format.json { head :no_content }
+        format.js {}
       else
         format.html { render action: 'edit' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -123,8 +127,7 @@ class MessagesController < ApplicationController
 
     def for_user
       @for_user = Message.for_user(current_user)
-      
-      @messages = @for_user.page(params[:page])
+      @messages = @for_user.order(created_at: :desc).page(params[:page])
     end
 
     def collect_states
