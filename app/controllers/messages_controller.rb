@@ -101,7 +101,6 @@ class MessagesController < ApplicationController
       if @message.update(message_params)
         format.html { redirect_to messages_path, notice: I18n.t('message_updated') }
         format.json { head :no_content }
-        # format.js { render action: 'update', status: :no_content, location: @message }
         format.js {}
       else
         format.html { render action: 'edit' }
