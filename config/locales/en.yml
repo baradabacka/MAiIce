@@ -26,6 +26,9 @@ en:
       long: "%-d %b"
       short: "%-d %b"
       month: "%b"
+  date:
+    formats:
+      Month: "%b"
   are_you_sure?: "Are you sure ?"
   action: "Action"
   back: "Back"

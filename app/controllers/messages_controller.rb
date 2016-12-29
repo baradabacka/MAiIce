@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
     6.times.each do |i|
       @messages[i] = [offseted_time(i), @for_user.where(created_at: (offseted_time(i)).to_s..(offseted_time(i) + 1.month).to_s).group_by { |hsh| hsh[:aasm_state] }]
     end
+    @chart = @for_user.group(:aasm_state).group_by_month(:created_at, range: 6.month.ago.midnight..Time.now).count
   end
 
   def status

@@ -3,6 +3,7 @@
     .col-md-2
     - @states.each do |state|
       .col-md-2 = state
+
   - @messages.each do |message|
     .row.capitalize.backdround_lightgray.border_my
       .col-md-2
@@ -10,8 +11,10 @@
       - @states.each do |state|
         .col-md-2
           =  message.last.key?(state) ? message.last[state].count : 0
-      .col-md-2
-footer.gradient_green1
+  .row.padding_top
+    .col-md-12 = line_chart @chart
+
+footer.container_bot
   .container
     .row
       .col-md-2 = link_to I18n.t('back'), messages_path
