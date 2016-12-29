@@ -16,4 +16,6 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require jquery.mCustomScrollbar
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
