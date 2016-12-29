@@ -5,7 +5,9 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'slim'
 
 gem "chartkick"
+
 gem 'rails_12factor', group: :production
+
 gem 'groupdate'
 
 gem "activeadmin", github: "gregbell/active_admin"
